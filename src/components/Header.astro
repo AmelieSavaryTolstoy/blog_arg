@@ -1,63 +1,21 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import style from "../styles/global.css";
+import '../styles/global.css'
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		/* header */
-		@import url("https://fonts.googleapis.com/css2?family=Annapurna+SIL:wght@400;700&family=Jaro:opsz@6..72&display=swap");
-
-		:global(body) {
-			margin: 0;
-			padding: 0;
-		}
-
-		header {
-			width: 100%;
-			margin: 0;
-			padding: 0;
-			background: linear-gradient(to bottom, #181A1E 70%,#EBEBEB 100%);
-		}
-
-		nav#main-menu {
-			display: flex;
-			justify-content: center;
-			align-items: stretch;
-			gap: 0;
-		}
-
-		nav#main-menu :global(.header-link) {
-			color: #EBEBEB;
-			text-decoration: none;
-			padding: 12px 24px;
-			font-family: "Jaro", sans-serif;
-			font-size: 24px;
-			letter-spacing: 0.04em;
-			text-transform: uppercase;
-			display: flex;
-			align-items: center;
-		}
-
-		nav#main-menu :global(.header-link:hover) {
-			opacity: 0.75;
-		}
-
-		nav#main-menu :global(.header-link.active) {
-			background-color: #004E98;
-			color: #EBEBEB;
-		}
-	</style>	
+	
 </head>
 <body>
 	<header>
 	<nav id="main-menu">
 		<HeaderLink href="/" class="header-link">Accueil</HeaderLink>
-		<HeaderLink href="articles" class="header-link">Articles</HeaderLink>
-		<HeaderLink href="/admin/" class="header-link">Admin</HeaderLink>
+		<HeaderLink href="/articles" class="header-link">Posts</HeaderLink>
+		<HeaderLink href="/admin" class="header-link">Admin</HeaderLink>
 	</nav>
 </header>
 </body>

@@ -1,0 +1,82 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import '../styles/global.css'
+
+import { posts } from './draft.ts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Admin</title>
+		<style>
+			.hidden { display: none !important; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div id="login-box">
+				<h2>Admin Access</h2>
+				<p id="error-msg" class="error hidden"></p>
+				<p id="hint-msg" class="hint hidden">
+					Indice : Le plus beau jour de ma vie.
+				</p>
+				<input id="username" type="text" placeholder="Nom d'utilisateur" />
+				<input id="password" type="password" placeholder="Mot de passe" />
+				<button id="login-btn" title="Valider la connexion">Entrer</button>
+			</div>
+
+			<div id="admin-box" class="hidden">
+				<h2>Draft</h2>
+				<div class="draft">
+					<h3>{posts[0].date}</h3>
+					<p>{posts[0].text}</p>
+				</div>
+				<div class="line"></div>
+				<div class="draft">
+					<h3>{posts[1].date}</h3>
+					<p>{posts[1].text}</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+	const CORRECT_USER = "bruno";
+	const CORRECT_PASS = "17/06/1990";
+	let attempts = 0;
+
+	const loginBox = document.getElementById("login-box")!;
+	const adminBox = document.getElementById("admin-box")!;
+	const errorMsg = document.getElementById("error-msg")!;
+	const hintMsg = document.getElementById("hint-msg")!;
+	const loginBtn = document.getElementById("login-btn")!;
+	const userInput = document.getElementById("username") as HTMLInputElement;
+	const passInput = document.getElementById("password") as HTMLInputElement;
+
+	loginBtn.addEventListener("click", () => {
+		const user = userInput.value.trim();
+		const pass = passInput.value.trim();
+
+		if (user === CORRECT_USER && pass === CORRECT_PASS) {
+			loginBox.classList.add("hidden");
+			adminBox.classList.remove("hidden");
+		} else {
+			attempts++;
+			errorMsg.textContent = `Wrong credentials. Attempt ${attempts}/3.`;
+			errorMsg.classList.remove("hidden");
+
+			if (attempts >= 3) {
+				hintMsg.classList.remove("hidden");
+			}
+
+			passInput.value = "";
+		}
+	});
+</script>

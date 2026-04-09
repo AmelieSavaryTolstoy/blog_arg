@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import '../styles/global.css'
 ---
 
 <footer>
@@ -7,62 +8,8 @@ import HeaderLink from "./HeaderLink.astro";
 		<span class="footer-brand">CAPELLI Bruno</span>
 		<nav class="footer-nav">
 			<HeaderLink href="/" class="footer-link">Accueil</HeaderLink>
-			<HeaderLink href="/articles/" class="footer-link">Articles</HeaderLink>
-			<HeaderLink href="/admin/" class="footer-link">Admin</HeaderLink>
+			<HeaderLink href="/articles" class="footer-link">Posts</HeaderLink>
+			<HeaderLink href="/admin" class="footer-link">Admin</HeaderLink>
 		</nav>
 	</div>
 </footer>
-
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Annapurna+SIL:wght@400;700&family=Jaro:opsz@6..72&display=swap');
-
-	footer {
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		background: linear-gradient( to bottom, #EBEBEB 0%, #181A1E 30% );
-	}
-
-	.footer-inner {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		padding: 1.5rem 2rem;
-	}
-
-	.footer-brand {
-		color: #EBEBEB;
-		font-family: "Jaro", sans-serif;
-		font-size: 24px;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		padding-top: 4px;
-	}
-
-	.footer-nav {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
-		gap: 0;
-		padding-right: 40px;
-	}
-
-	.footer-nav :global(.footer-link) {
-		color: #EBEBEB;
-		text-decoration: none;
-		padding: 12px 24px;
-		font-family: "Jaro", sans-serif;
-		font-size: 24px;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-	}
-
-	.footer-nav :global(.footer-link:hover) {
-		opacity: 0.75;
-	}
-
-	.footer-nav :global(.footer-link.active) {
-		background-color: #004E98;
-		color: #EBEBEB;
-	}
-</style>

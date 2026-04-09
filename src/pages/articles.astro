@@ -1,49 +1,55 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import '../styles/global.css'
 
-type Props = CollectionEntry<'blog'>['data'];
+import { posts } from './content.ts';
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const sorted = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const years = [...new Set(sorted.map(p => new Date(p.date).getFullYear()))].sort((a, b) => a - b);
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		
-	</head>
-
+<html lang="fr">
 	<body>
 		<Header />
 		<main>
-			
+			<h2>Mes posts</h2>
+			<div class="filters">
+				<button class="filter-btn active" data-year="all">Tous</button>
+				{years.map(year => (
+					<button class="filter-btn" data-year={year}>{year}</button>
+				))}
+			</div>
+
+			<div class="posts">
+				{sorted.map((post) => (
+					<div class="post" data-year={new Date(post.date).getFullYear()}>
+						<h3>{post.date}</h3>
+						<p>{post.text}</p>
+						<div class="line"></div>
+					</div>
+				))}
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
 
-<style>
-	@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
-	@import url("https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap");
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+	const posts = document.querySelectorAll<HTMLElement>('.post');
 
-	body {
-		margin: 0;
-		padding: 0;
-		font-family: "Cairo", sans-serif;
-	}
+	buttons.forEach(btn => {
+		btn.addEventListener('click', () => {
+			buttons.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
 
-	main {
-		background: linear-gradient(to bottom, #ff660079 0%, #EBEBEB 30%);
-		min-height: 100px;
-		padding: 52px 1px;
-	}
+			const year = btn.dataset.year;
 
-	main > * {
-		max-width: 900px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-</style>
+			posts.forEach(post => {
+				post.style.display = (year === 'all' || post.dataset.year === year) ? 'block' : 'none';
+			});
+		});
+	});
+</script>
