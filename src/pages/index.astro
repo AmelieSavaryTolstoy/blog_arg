@@ -1,49 +1,181 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
+<html lang="fr">
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<!-- Bio section -->
+			<section class="bio">
+				<div class="bio-photo"></div>
+				<div class="bio-text">
+					<h2>CAPELLI Bruno</h2>
+					<p>
+						Je suis Bruno CAPELLI, je viens de Toulouse, je suis
+						père de famille et bienvenue sur mon blog ! Ici vous
+						pourrez suivre mon quotidien que je vous partage avec
+						passion !
+					</p>
+				</div>
+			</section>
+
+			<!-- Latest article + sidebar -->
+			<section class="content">
+				<div class="article">
+					<div class="article-title-bar">
+						<h3>Le début d'une nouvelle page</h3>
+					</div>
+					<div class="article-body">
+						<p>15/08</p>
+						<p>Hello tout le monde!!</p>
+						<p>
+							J'avais tellement hâte de débuter ce blog, en tant
+							que papa solo, on a parfois du mal à tout gérer
+							(encore plus avec un ado xD).
+						</p>
+						<p>
+							J'ai recommencé à fréquenter quelqu'un mais je ne
+							sais pas comment va le prendre mon fils, je ne veux
+							pas le perturber... :/
+						</p>
+						<p>
+							Mais, je dois dire qu'après 10 ans seul, j'ai envie
+							de me reconstruire, bientôt mon enfant quittera le
+							nid, alors autant se lancer!!
+						</p>
+						<p>À bientôt!!</p>
+					</div>
+				</div>
+
+				<aside class="sidebar">
+					<div class="sidebar-item">
+						<div class="sidebar-photo"></div>
+						<a href="#">Lorem ipsum dolor sit amet</a>
+					</div>
+					<div class="sidebar-item">
+						<div class="sidebar-photo"></div>
+						<a href="#">Lorem ipsum dolor sit amet</a>
+					</div>
+				</aside>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+	@import url("https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap");
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: "Cairo", sans-serif;
+	}
+
+	main {
+		background: linear-gradient(to bottom, #ff660079 0%, #EBEBEB 30%);
+		min-height: 100px;
+		padding: 52px 1px;
+	}
+
+	main > * {
+		max-width: 900px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* Bio */
+	.bio {
+		display: flex;
+		align-items: flex-start;
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	.bio-photo {
+		width: 160px;
+		min-width: 160px;
+		height: 180px;
+		background-color: #c8c8c8;
+	}
+
+	.bio-text h2 {
+		font-family: "Jaro", sans-serif;
+		font-size: 24px;
+		margin: 0 0 1rem 0;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.bio-text p {
+		margin: 0;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	/* Content + sidebar */
+	.content {
+		display: flex;
+		gap: 2rem;
+		align-items: flex-start;
+	}
+
+	/* Article */
+	.article {
+		flex: 1;
+	}
+
+	.article-title-bar {
+		background-color: #2a5aa7;
+		padding: 0.5rem 1rem;
+		margin-bottom: 1rem;
+		border: 4px solid #063F74;
+		border-image: linear-gradient(to bottom, #063F74 70%, #cfe0ed 100%) 1;
+	}
+
+	.article-title-bar h3 {
+		margin: 0;
+		color: white;
+		font-family: "Jaro", sans-serif;
+		font-size: 24px;
+		letter-spacing: 0.04em;
+	}
+
+	.article-body p {
+		margin: 0 0 0.25rem 0;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	/* Sidebar */
+	.sidebar {
+		width: 200px;
+		min-width: 200px;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.sidebar-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.sidebar-photo {
+		width: 100%;
+		height: 140px;
+		background-color: #c8c8c8;
+	}
+
+	.sidebar-item a {
+		font-size: 14px;
+		color: #333;
+		text-decoration: underline;
+		font-family: "Cairo", sans-serif;
+	}
+</style>
